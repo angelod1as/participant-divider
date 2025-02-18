@@ -28,7 +28,7 @@ jobs:
       - name: Upload EXE as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: windows-executable
+          name: participant_divider
           path: dist/participant_divider.exe
 
       - name: Get Current Date
