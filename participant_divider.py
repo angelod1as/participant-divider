@@ -11,6 +11,7 @@
 # Then, read the files in the `source` folder — the script gets the first `xlsx` it finds.
 
 # %%
+input("Press any key to start...")
 print("Starting script...")
 
 # %%
@@ -203,3 +204,4 @@ for group, group_df in dfs.items():
 # %%
 workbook.save(new_path)
 print(f"{new_path} file written successfully.")
+input("Press any key to end...")
