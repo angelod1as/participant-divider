@@ -1,3 +1,7 @@
+# %%
+input("Press any key to start...")
+print("Starting script...")
+
 # %% [markdown]
 # # Separating participants into groups
 #
@@ -8,32 +12,29 @@
 # In a camp participant's spreadsheet, this script takes the paying and confirmed participants and separates them into groups by age.
 
 # %% [markdown]
-# Then, read the files in the `source` folder — the script gets the first `xlsx` it finds.
-
-# %%
-input("Press any key to start...")
-print("Starting script...")
+# Gets the first XLSX in the same folder as the script as main file.
 
 # %%
 from pathlib import Path
 
-file_folder = Path("./source")
+file_folder = Path("./")
 
 
 def find_first_xlsx():
     for filename in file_folder.glob("*.xlsx"):
+        print(filename)
         if "xlsx" in str(filename):
             return Path(filename)
 
+
+path = find_first_xlsx()
+print(f"\tFound file {path}")
 
 # %% [markdown]
 # Turns the sheet into a dataframe and sets the phone as string (to avoid confusion with numbers and zeroes)
 
 # %%
 import pandas as pd
-
-path = find_first_xlsx()
-print(f"\tFound file {path}")
 
 df = pd.read_excel(
     path,
@@ -103,7 +104,8 @@ import re
 
 print("\tWriting xlsx file...")
 
-pattern = r"(?<=/)(.*?)(?=\.xlsx)"
+pattern = r"([^/\\]*)(?=\.xlsx)"
+print(re.search(pattern, str(path)))
 match = re.search(pattern, str(path))
 
 if not match:
